@@ -229,6 +229,25 @@ This provides more flexibility in organizing contacts using location-based detai
 
 - Added **unit tests** to verify sorting behavior, including cases with empty Address Books and scenarios with a single contact.
 
+## 🧩 UC13 – File IO Integration
+
+Adds support for file persistence in the Address Book application using Java File IO.  
+This feature allows contacts to be saved to a file and later retrieved from it.
+
+### Purpose
+- Enable the Address Book to store contact data permanently outside the application's runtime memory.
+- Allow previously saved contacts to be loaded back into the system when needed.
+
+### Implementation
+- Developed a utility class `FileUtil` to handle file operations using `BufferedWriter` and `BufferedReader`.
+- Implemented methods to write Address Book contacts to a file and read them back into memory.
+- Added REST API endpoints in `AddressBookController`:
+
+  **POST /addressbooks/{bookName}/save**  
+  **GET /addressbooks/load**
+
+- Included unit tests to verify file creation, reading contacts from files, handling empty files, and saving multiple contacts successfully.
+
 ### 📂 Project Structure
 
 ```
