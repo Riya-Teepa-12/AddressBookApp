@@ -35,6 +35,16 @@ This use case introduces the functionality to add new contacts to an Address Boo
 - Allow the application to store and organize contacts within an Address Book.
 - Provide a backend API to accept contact information such as **first name, last name, address, city, state, zip code, phone number, and email**.
 
+## ⚙️ Implementation
+
+- Created an **AddressBook model** that stores contacts using a `List<Contact>`.
+- Implemented **AddressBookService** to manage Address Books using a `Map<String, AddressBook>`.
+- Added logic to **automatically create an Address Book** if the specified one does not exist.
+- Developed **AddressBookController** to expose the following REST endpoint:
+
+```
+POST /addressbooks/{name}/contacts
+```
 
 ## 🧩 UC3 – Update Existing Contact
 
@@ -88,16 +98,26 @@ This feature allows users to retrieve all contacts associated with a specific Ad
 - Added **unit tests** to validate scenarios such as retrieving multiple contacts, handling empty contact lists, managing duplicate contacts, working with large datasets, and supporting multiple Address Books.
 ---
 
-## ⚙️ Implementation
+## 🧩 UC6 – Support Multiple Address Books
 
-- Created an **AddressBook model** that stores contacts using a `List<Contact>`.
-- Implemented **AddressBookService** to manage Address Books using a `Map<String, AddressBook>`.
-- Added logic to **automatically create an Address Book** if the specified one does not exist.
-- Developed **AddressBookController** to expose the following REST endpoint:
+Introduces the ability for the application to manage several Address Books simultaneously.  
+Each Address Book is assigned a unique name and functions independently from the others.
 
-```
-POST /addressbooks/{name}/contacts
-```
+### Purpose
+- Allow users to categorize contacts into different Address Books such as **personal**, **work**, or **family**.
+- Ensure contacts are maintained separately within their respective Address Books.
+
+### Implementation
+- Modified the service layer to maintain Address Books using a **Map<String, AddressBook>** data structure.
+- Added service methods to **create new Address Books** and **retrieve existing ones**.
+- Implemented REST API endpoints in `AddressBookController`:
+
+  **POST /addressbooks/{name}**  
+  **GET /addressbooks**
+
+- Included **unit tests** to verify creation of multiple Address Books, prevent duplicate Address Book names, and confirm that contacts remain properly isolated within their corresponding Address Books.
+
+
 
 ### 📂 Project Structure
 
