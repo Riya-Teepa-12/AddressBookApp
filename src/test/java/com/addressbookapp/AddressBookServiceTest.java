@@ -190,4 +190,78 @@ public class AddressBookServiceTest {
         assertEquals(1,
                 service.getAddressBook("friends").getContacts().size());
     }
+    
+    @Test
+    public void givenExistingContact_whenUpdated_shouldReturnUpdatedContact() {
+
+        AddressBookService service = new AddressBookService();
+
+        Contact original = new Contact(
+                "Tarus",
+                "Prabhat",
+                "New City",
+                "Ariana",
+                "Geornite",
+                "567834",
+                "7634237809",
+                "tp@gmail.com"
+        );
+
+        service.addContact("personal", original);
+
+        Contact updated = new Contact(
+                "Tarus",
+                "Prabhat",
+                "Future City",
+                "Nova",
+                "Geornite",
+                "567834",
+                "9999999999",
+                "tarus@update.com"
+        );
+
+        Contact result = service.updateContact(
+                "personal",
+                "Tarus",
+                "Prabhat",
+                updated
+        );
+
+        assertEquals("Nova", result.getCity());
+        assertEquals("9999999999", result.getPhoneNumber());
+    }
+    
+    @Test
+    public void givenNonExistingContact_whenUpdate_shouldReturnNull() {
+
+        AddressBookService service = new AddressBookService();
+
+        Contact updated = new Contact();
+
+        Contact result = service.updateContact(
+                "personal",
+                "Unknown",
+                "Person",
+                updated
+        );
+
+        assertNull(result);
+    }
+    
+    @Test
+    public void givenMissingAddressBook_whenUpdate_shouldReturnNull() {
+
+        AddressBookService service = new AddressBookService();
+
+        Contact updated = new Contact();
+
+        Contact result = service.updateContact(
+                "unknownBook",
+                "Tarus",
+                "Prabhat",
+                updated
+        );
+
+        assertNull(result);
+    }
 }
