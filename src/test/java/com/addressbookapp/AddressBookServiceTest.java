@@ -3,7 +3,7 @@ package com.addressbookapp;
 import com.addressbookapp.model.AddressBook;
 import com.addressbookapp.model.Contact;
 import com.addressbookapp.service.AddressBookService;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -48,6 +48,7 @@ public class AddressBookServiceTest {
         assertNotNull(service.getAddressBook("office"));
     }
 
+    @Disabled
     @Test
     public void givenMultipleContacts_whenAdded_shouldStoreAllContacts() {
 
@@ -115,6 +116,7 @@ public class AddressBookServiceTest {
                 service.getAddressBook("personal").getContacts().size());
     }
 
+    @Disabled
     @Test
     public void givenSameContactTwice_whenAdded_shouldAllowDuplicatesForNow() {
 
@@ -363,6 +365,7 @@ public class AddressBookServiceTest {
         assertEquals(1, service.getContacts("office").size());
     }
     
+    @Disabled
     @Test
     public void givenDuplicateContacts_whenAdded_shouldAllowDuplicates() {
 
@@ -452,5 +455,67 @@ public class AddressBookServiceTest {
 
         assertTrue(service.getAllAddressBooks().containsKey("personal"));
         assertTrue(service.getAllAddressBooks().containsKey("office"));
+    }
+    
+    @Test
+    public void givenDuplicateContact_whenAdded_shouldThrowException() {
+
+        AddressBookService service = new AddressBookService();
+
+        Contact c1 = new Contact(
+                "Tarus","Prabhat","New City","Ariana",
+                "Geornite","567834","7634237809","tp@gmail.com");
+
+        Contact c2 = new Contact(
+                "Tarus","Prabhat","Other","Other",
+                "Other","111111","9999999999","dup@gmail.com");
+
+        service.addContact("personal", c1);
+
+        assertThrows(RuntimeException.class, () -> {
+            service.addContact("personal", c2);
+        });
+    }
+    
+    @Test
+    public void givenSameContactInDifferentBooks_shouldBeAllowed() {
+
+        AddressBookService service = new AddressBookService();
+
+        Contact c = new Contact("Tarus","Prabhat","","","","","","");
+
+        service.addContact("personal", c);
+        service.addContact("office", c);
+
+        assertEquals(1, service.getContacts("personal").size());
+        assertEquals(1, service.getContacts("office").size());
+    }
+    
+    @Test
+    public void givenDifferentContacts_whenAdded_shouldAllow() {
+
+        AddressBookService service = new AddressBookService();
+
+        Contact c1 = new Contact("Tarus","Prabhat","","","","","","");
+        Contact c2 = new Contact("Rahul","Verma","","","","","","");
+
+        service.addContact("personal", c1);
+        service.addContact("personal", c2);
+
+        assertEquals(2, service.getContacts("personal").size());
+    }
+    
+    @Test
+    public void givenExistingDuplicate_whenChecked_shouldPreventDuplicate() {
+
+        AddressBookService service = new AddressBookService();
+
+        Contact c1 = new Contact("Tarus","Prabhat","","","","","","");
+
+        service.addContact("personal", c1);
+
+        assertThrows(RuntimeException.class, () -> {
+            service.addContact("personal", new Contact("Tarus","Prabhat","","","","","",""));
+        });
     }
 }
