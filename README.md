@@ -132,6 +132,24 @@ A contact is considered unique based on the combination of **first name** and **
 - If a duplicate contact is detected, the system throws an **exception** to prevent insertion.
 - Implemented **unit tests** to validate duplicate detection, confirm successful addition of unique contacts, and allow identical contacts across different Address Books.
 
+## 🧩 UC8 – Search Contacts by City or State
+
+Adds functionality to locate contacts based on their **city** or **state** across all Address Books.  
+This feature makes it easier to filter and retrieve contacts using location details.
+
+### Purpose
+- Help users quickly identify contacts belonging to a particular **city** or **state**.
+- Enable searching across **all Address Books** available in the system.
+
+### Implementation
+- Developed search logic in `AddressBookService` using **Java Streams**.
+- Aggregated contacts from every Address Book and applied filters based on the provided **city** or **state**.
+- Implemented REST API endpoints in `AddressBookController`:
+
+  **GET /addressbooks/search/city/{city}**  
+  **GET /addressbooks/search/state/{state}**
+
+- Added **unit tests** to verify correct search results, ensure **case-insensitive matching**, support multiple matching contacts, and handle cases where no contacts match the search criteria.
 
 ### 📂 Project Structure
 
