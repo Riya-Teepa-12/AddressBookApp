@@ -151,6 +151,25 @@ This feature makes it easier to filter and retrieve contacts using location deta
 
 - Added **unit tests** to verify correct search results, ensure **case-insensitive matching**, support multiple matching contacts, and handle cases where no contacts match the search criteria.
 
+## 🧩 UC9 – Display Contacts by City or State
+
+Adds functionality to display contacts grouped according to their **city** or **state** across all Address Books.  
+This helps organize contact information based on location for better visibility and analysis.
+
+### Purpose
+- Enable users to view contacts categorized by their **city** or **state**.
+- Provide a structured way to organize and analyze contacts based on location.
+
+### Implementation
+- Implemented grouping functionality in `AddressBookService` using **Java Streams** along with `Collectors.groupingBy()`.
+- Contacts are organized into a **Map<String, List<Contact>>** structure where the key represents the city or state.
+- Added REST API endpoints in `AddressBookController`:
+
+  **GET /addressbooks/view/city**  
+  **GET /addressbooks/view/state**
+
+- Created **unit tests** to validate grouping logic, ensure correct handling of multiple Address Books, and test cases with empty contact collections.
+
 ### 📂 Project Structure
 
 ```
