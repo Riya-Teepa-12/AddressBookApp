@@ -23,23 +23,60 @@ Introduces the **Contact domain model** representing an entry in the Address Boo
 - Encapsulated all contact fields with constructors and getters.
 - Added **JUnit test (`ContactTest`)** to verify correct creation of Contact objects.
 
+
+## 🧩 UC2 – Add Contact to Address Book
+
+This use case introduces the functionality to add new contacts to an Address Book through a REST API. It also sets up the core service structure required to manage contacts across multiple Address Books.
+
 ---
+
+## 🎯 Purpose
+
+- Allow the application to store and organize contacts within an Address Book.
+- Provide a backend API to accept contact information such as **first name, last name, address, city, state, zip code, phone number, and email**.
+
+---
+
+## ⚙️ Implementation
+
+- Created an **AddressBook model** that stores contacts using a `List<Contact>`.
+- Implemented **AddressBookService** to manage Address Books using a `Map<String, AddressBook>`.
+- Added logic to **automatically create an Address Book** if the specified one does not exist.
+- Developed **AddressBookController** to expose the following REST endpoint:
+
+```
+POST /addressbooks/{name}/contacts
+```
+
 ### 📂 Project Structure
+
 ```
 AddressBookApp
 │
 ├── src
 │   ├── main
-│   │   └── java/com/addressbook
-│   │       ├── model
-│   │       │   └── Contact.java
-│   │       └── AddressBookApplication.java
+│   │   ├── java/com/addressbookapp
+│   │   │   ├── controller
+│   │   │   │   └── AddressBookController.java
+│   │   │   │
+│   │   │   ├── model
+│   │   │   │   ├── AddressBook.java
+│   │   │   │   └── Contact.java
+│   │   │   │
+│   │   │   ├── service
+│   │   │   │   └── AddressBookService.java
+│   │   │   │
+│   │   │   └── AddressBookApplication.java
+│   │   │
+│   │   └── resources
+│   │       └── application.properties
 │   │
 │   └── test
-│       └── java/com/addressbook
+│       └── java/com/addressbookapp
+│           ├── AddressBookServiceTest.java
+│           ├── AddressbookappApplicationTests.java
 │           └── ContactTest.java
-│           └── AddressBookApplicationTests.java
-├── pom.xml
+│── pom.xml
 └── README.md
 ```
 
