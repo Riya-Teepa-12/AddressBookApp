@@ -210,6 +210,25 @@ This improves readability and makes it easier for users to browse contacts.
 - Overrode the `toString()` method in the `Contact` model to display contact details in a readable format.
 - Added **unit tests** to verify sorting behavior, handle empty Address Books, and test scenarios with multiple contacts.
 
+## 🧩 UC12 – Sort Contacts by City, State, or Zip
+
+Enhances the sorting functionality by allowing contacts to be arranged based on **city**, **state**, or **zip code** within an Address Book.  
+This provides more flexibility in organizing contacts using location-based details.
+
+### Purpose
+- Enable users to display contacts sorted by **city**, **state**, or **zip code**.
+- Improve the organization and accessibility of contact information using geographical attributes.
+
+### Implementation
+- Implemented sorting logic in `AddressBookService` using **Java Streams** with `Comparator.comparing()` for the fields `city`, `state`, and `zip`.
+- Added REST API endpoints in `AddressBookController`:
+
+  **GET /addressbooks/{bookName}/sort/city**  
+  **GET /addressbooks/{bookName}/sort/state**  
+  **GET /addressbooks/{bookName}/sort/zip**
+
+- Added **unit tests** to verify sorting behavior, including cases with empty Address Books and scenarios with a single contact.
+
 ### 📂 Project Structure
 
 ```
