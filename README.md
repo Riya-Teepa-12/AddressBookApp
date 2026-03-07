@@ -35,6 +35,23 @@ This use case introduces the functionality to add new contacts to an Address Boo
 - Allow the application to store and organize contacts within an Address Book.
 - Provide a backend API to accept contact information such as **first name, last name, address, city, state, zip code, phone number, and email**.
 
+
+## 🧩 UC3 – Update Existing Contact
+
+Adds the functionality to **update an existing contact** in the Address Book through a REST API.  
+This feature allows modification of stored contact details while keeping the contact record intact in the Address Book.
+
+### Purpose
+
+- Enable users to update contact information such as **address, city, state, zip code, phone number, and email**.
+- Provide a way to **identify a contact using the first name and last name** within a specific Address Book.
+
+### Implementation
+
+- Implemented an **`updateContact()` method** in `AddressBookService` to locate a contact using **firstName and lastName** and update the required details.
+- Created a **REST endpoint** in `AddressBookController`:
+
+
 ---
 
 ## ⚙️ Implementation
