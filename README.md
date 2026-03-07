@@ -170,6 +170,28 @@ This helps organize contact information based on location for better visibility 
 
 - Created **unit tests** to validate grouping logic, ensure correct handling of multiple Address Books, and test cases with empty contact collections.
 
+## 🧩 UC10 – Count Contacts by City or State
+
+Adds functionality to calculate the number of contacts grouped by their **city** or **state** across all Address Books.  
+This feature helps provide insights into how contacts are distributed by location.
+
+### Purpose
+- Allow users to view the **total number of contacts** associated with each city or state.
+- Offer summarized statistics of contacts across all Address Books.
+
+### Implementation
+- Implemented counting logic in `AddressBookService` using **Java Streams** with `Collectors.groupingBy()` and `Collectors.counting()`.
+- Contacts are aggregated into a structure represented by:
+
+  **Map<String, Long>**
+
+- Added REST API endpoints in `AddressBookController`:
+
+  **GET /addressbooks/count/city**  
+  **GET /addressbooks/count/state**
+
+- Included **unit tests** to verify counting across multiple Address Books, handle empty contact lists, and validate contacts belonging to different cities or states.
+
 ### 📂 Project Structure
 
 ```
