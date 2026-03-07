@@ -192,6 +192,24 @@ This feature helps provide insights into how contacts are distributed by locatio
 
 - Included **unit tests** to verify counting across multiple Address Books, handle empty contact lists, and validate contacts belonging to different cities or states.
 
+## 🧩 UC11 – Sort Contacts by Name
+
+Adds the ability to arrange contacts alphabetically by their **first name** within an Address Book.  
+This improves readability and makes it easier for users to browse contacts.
+
+### Purpose
+- Allow users to view contacts in **alphabetical order** for easier navigation.
+- Provide a structured and consistent way to display contact lists.
+
+### Implementation
+- Implemented sorting logic in `AddressBookService` using **Java Streams** with `Comparator.comparing()` on the `firstName` field.
+- Added a REST API endpoint in `AddressBookController`:
+
+  **GET /addressbooks/{bookName}/sort/name**
+
+- Overrode the `toString()` method in the `Contact` model to display contact details in a readable format.
+- Added **unit tests** to verify sorting behavior, handle empty Address Books, and test scenarios with multiple contacts.
+
 ### 📂 Project Structure
 
 ```
