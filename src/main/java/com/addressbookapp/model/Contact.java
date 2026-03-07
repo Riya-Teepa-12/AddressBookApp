@@ -1,8 +1,10 @@
 package com.addressbookapp.model;
 
 import java.util.Objects;
+
 public class Contact {
-	private String firstName;
+
+    private String firstName;
     private String lastName;
     private String address;
     private String city;
@@ -13,7 +15,7 @@ public class Contact {
 
     public Contact() {
     }
-    
+
     public Contact(String firstName, String lastName, String address,
             String city, String state, String zip,
             String phoneNumber, String email) {
@@ -111,5 +113,17 @@ public class Contact {
     public int hashCode() {
 
         return Objects.hash(firstName, lastName);
+    }
+    
+    @Override
+    public String toString() {
+
+        return "Contact{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 }
