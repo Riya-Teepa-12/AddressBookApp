@@ -306,9 +306,9 @@ AddressBookApp
 │   │   │   │
 │   │   │   └── AddressBookApplication.java
 │   │   │   ├── util── FileUtil.java
-│   │   └── resources
+│   │   |            └──CSVUtil.java
+│   │   └── resources  └── JSONUtil.java          
 │   │       └── application.properties
-│   │
 │   └── test
 │       └── java/com/addressbookapp
 │           ├── AddressBookServiceTest.java
