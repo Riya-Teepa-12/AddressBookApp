@@ -410,6 +410,24 @@ Example JSON request:
 * Added repository integration tests to verify successful insertion of a new contact into the database.
 
 
+## 🧩 UC20 – Add Contact to Database Using JDBC
+
+Enhances the AddressBook system by enabling the insertion of new contact records directly into the database using JDBC.
+
+### 🎯 Purpose
+- Persist newly created contacts in the database.
+- Ensure reliable and secure database operations.
+
+### ⚙️ Implementation
+- Extended **ContactRepository** with an SQL `INSERT` query using **JDBC PreparedStatement**.
+- Implemented transaction handling using:
+  - `setAutoCommit(false)`
+  - `commit()`
+  - `rollback()`
+- Added a service method in **AddressBookService** to manage database insertion through the repository layer.
+- Created a REST endpoint in **AddressBookController**:
+
+
 ### 📂 Project Structure
 
 ```
@@ -420,6 +438,9 @@ AddressBookApp
 │   │   ├── java/com/addressbookapp
 │   │   │   ├── controller
 │   │   │   │   └── AddressBookController.java
+│   │   │   │
+│   │   │   ├── dto
+│   │   │   │   └── ContactDTO.java
 │   │   │   │
 │   │   │   ├── model
 │   │   │   │   ├── AddressBook.java
@@ -433,13 +454,13 @@ AddressBookApp
 │   │   │   │
 │   │   │   ├── storage
 │   │   │   │   ├── ContactStorage.java
-│   │   │   │   ├── FileStorage.java
 │   │   │   │   ├── CSVStorage.java
+│   │   │   │   ├── FileStorage.java
 │   │   │   │   └── JSONStorage.java
 │   │   │   │
 │   │   │   ├── util
-│   │   │   │   ├── FileUtil.java
 │   │   │   │   ├── CSVUtil.java
+│   │   │   │   ├── FileUtil.java
 │   │   │   │   └── JSONUtil.java
 │   │   │   │
 │   │   │   └── AddressBookApplication.java
@@ -449,7 +470,7 @@ AddressBookApp
 │   │
 │   └── test
 │       └── java/com/addressbookapp
-│           ├── AddressBookApplicationTests.java
+│           ├── AddressbookappApplicationTests.java
 │           ├── AddressBookServiceTest.java
 │           ├── ContactRepositoryTest.java
 │           └── ContactTest.java
