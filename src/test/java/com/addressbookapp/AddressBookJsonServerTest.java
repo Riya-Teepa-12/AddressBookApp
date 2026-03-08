@@ -92,4 +92,18 @@ public class AddressBookJsonServerTest {
 
         //System.out.println(response.getBody().asPrettyString());
     }
+    
+    @Test
+    public void givenExistingContact_whenDeleted_shouldReturnSuccess() {
+
+        Response response =
+                RestAssured
+                        .given()
+                        .when()
+                        .delete("http://localhost:3000/contacts/2");
+
+        assertEquals(200, response.getStatusCode());
+
+        System.out.println("Contact deleted successfully");
+    }
 }
