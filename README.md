@@ -267,6 +267,25 @@ This feature allows exporting contacts to CSV files and importing them back into
 
 - Included unit tests to verify CSV file creation, reading contacts from CSV files, handling multiple contacts, and processing empty CSV files.
 
+## 🧩 UC15 – JSON File Integration
+
+Adds support for storing and retrieving Address Book contacts using a structured JSON format.  
+This feature enables exporting contacts to JSON files and importing them back into the application.
+
+### Purpose
+- Allow contacts to be saved and retrieved in a **structured JSON format**.
+- Provide a **flexible and widely used format** for storing and exchanging contact data.
+
+### Implementation
+- Developed a utility class `JSONUtil` to manage JSON serialization and deserialization using the **GSON** library.
+- Implemented methods to write contacts from an Address Book to a JSON file and read contacts from a JSON file into memory.
+- Added REST API endpoints in `AddressBookController`:
+
+  **POST /addressbooks/{bookName}/save-json**  
+  **GET /addressbooks/load-json**
+
+- Included unit tests to verify JSON file creation, reading contacts from JSON files, handling multiple contacts, and processing empty JSON file scenarios.
+
 ### 📂 Project Structure
 
 ```
