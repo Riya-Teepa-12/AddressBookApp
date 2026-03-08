@@ -472,6 +472,23 @@ Extends the AddressBook system to allow **adding new contact records to an exter
 ### Outcome
 The AddressBook system can now **add new contacts to an external JSON server through REST API calls**, enabling automated verification of the contact creation functionality.
 
+## 🧩 UC24 – Update Contact in JSON Server using REST Assured
+
+Extends the AddressBook system to support **updating existing contact records in an external JSON server** using REST API calls executed through automated tests.
+
+### Purpose
+- Enable the system to **modify existing contact information** stored in a REST-based data source.
+- Demonstrate the use of **REST Assured** to perform **HTTP PUT requests and validate API responses**.
+
+### Implementation
+- Configured a **json-server mock REST API** running on **port 3000** with a `db.json` file containing contact records.
+- Implemented a **REST Assured automated test** that sends a PUT request to the endpoint:
+
+- Sent the **updated contact details in JSON format** using `contentType("application/json")` along with the request body.
+- Verified the server response by checking the **HTTP status code `200 OK`** and validating the returned JSON response.
+
+### Outcome
+The AddressBook system can now **update existing contact records on an external JSON server through REST API calls**, enabling automated verification of contact update functionality.
 
 ### 📂 Project Structure
 
