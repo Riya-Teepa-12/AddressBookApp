@@ -442,6 +442,19 @@ Enhances the AddressBook system to support inserting multiple contacts into the 
 - Implemented a service method in `AddressBookService` to create and manage multiple threads, where each thread inserts one contact into the database.
 - Added a REST endpoint in `AddressBookController`:
 
+## 🧩 UC22 – Read Contacts from JSON Server using REST Assured
+
+Enhances the AddressBook system to retrieve contact records from an external **JSON Server** using REST API calls executed through automated tests.
+
+### 🎯 Purpose
+- Enable the application to integrate with an external REST service that provides contact data.
+- Demonstrate **REST API testing using the REST Assured library**.
+
+### ⚙️ Implementation
+- Installed and configured **json-server** to simulate a REST API using a `db.json` file containing sample contact records.
+- Started the JSON server on **port 3000**, exposing REST endpoints such as:
+
+
 ### 📂 Project Structure
 
 ```
@@ -491,7 +504,7 @@ AddressBookApp
 │           ├── AddressBookServiceTest.java
 │           ├── ContactRepositoryTest.java
 │           └── ContactTest.java
-│
+│           └── AddressBookJsonServerTest.java
 ├── pom.xml
 └── README.md
 ```
