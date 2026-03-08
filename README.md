@@ -454,6 +454,24 @@ Enhances the AddressBook system to retrieve contact records from an external **J
 - Installed and configured **json-server** to simulate a REST API using a `db.json` file containing sample contact records.
 - Started the JSON server on **port 3000**, exposing REST endpoints such as:
 
+## 🧩 UC23 – Add Contacts to JSON Server using REST Assured
+
+Extends the AddressBook system to allow **adding new contact records to an external JSON server** through REST API calls executed from automated tests.
+
+### Purpose
+- Enable the system to **create new contact entries** in a REST-based data source.
+- Demonstrate how **REST Assured** can be used to perform **POST requests and validate API responses**.
+
+### Implementation
+- Configured a **json-server mock REST API** running on **port 3000** using a `db.json` file containing contact records.
+- Implemented a **REST Assured automated test** that sends a POST request to the endpoint:
+
+- Sent contact details in **JSON format** using `contentType("application/json")` along with the request body.
+- Verified the server response by checking the **HTTP status code `201 Created`** and validating the returned JSON data.
+
+### Outcome
+The AddressBook system can now **add new contacts to an external JSON server through REST API calls**, enabling automated verification of the contact creation functionality.
+
 
 ### 📂 Project Structure
 
