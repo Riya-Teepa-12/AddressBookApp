@@ -203,4 +203,16 @@ public class AddressBookController {
 
         return service.getContactsByDateRange(startDate, endDate);
     }
+    
+    @PostMapping("/db/add-contact")
+    public String addContactToDB(@RequestBody Contact contact) {
+
+        int inserted = service.addContactToDatabase(contact);
+
+        if(inserted > 0) {
+            return "Contact added successfully";
+        }
+
+        return "Failed to add contact";
+    }
 }
