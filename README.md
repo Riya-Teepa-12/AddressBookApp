@@ -369,6 +369,45 @@ GET /addressbooks/db/contacts-by-date?startDate=2026-03-01&endDate=2026-03-10
 
 * Added a repository test to verify that contacts within the specified date range are successfully retrieved from the database.
 
+## 🧩 UC19 – Add Contact to Database
+
+Introduces the ability to insert new contacts directly into the database using JDBC through the repository layer.
+
+### 🎯 Purpose
+
+* Enable storing contact information permanently in the relational database.
+* Demonstrate database **INSERT operations** using JDBC with Spring Boot DataSource.
+
+### ⚙️ Implementation
+
+* Implemented `addContact()` method in **ContactRepository** using a prepared SQL `INSERT` statement.
+* Automatically stores the current date using `CURDATE()` for the `date_added` column.
+* Exposed the functionality through **AddressBookService**.
+* Added a REST API endpoint in **AddressBookController**:
+
+```
+POST /addressbooks/db/add-contact
+```
+
+### 📥 Request Body
+
+Example JSON request:
+
+```json
+{
+  "firstName": "Aman",
+  "lastName": "Sharma",
+  "city": "Delhi",
+  "state": "DL",
+  "zip": "110001",
+  "phoneNumber": "8888888888",
+  "email": "aman@gmail.com"
+}
+```
+
+### 🧪 Testing
+
+* Added repository integration tests to verify successful insertion of a new contact into the database.
 
 
 ### 📂 Project Structure
