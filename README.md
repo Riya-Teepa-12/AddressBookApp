@@ -332,6 +332,43 @@ PUT /addressbooks/db/update-city
 
 * Added a repository integration test to verify that the database update operation successfully modifies the contact record.
 
+## 🧩 UC18 – Retrieve Contacts by Date Range
+
+Introduces the ability to retrieve contacts from the database based on a specified date range.
+
+### 🎯 Purpose
+
+* Allow users to fetch contacts added within a specific time period.
+* Demonstrate database querying using JDBC with date filtering.
+
+### ⚙️ Implementation
+
+* Added a `date_added` column in the **contacts** database table.
+* Implemented `getContactsByDateRange()` method in **ContactRepository** to execute an SQL query using the `BETWEEN` clause.
+* Exposed the functionality through **AddressBookService**.
+* Added a REST API endpoint in **AddressBookController**:
+
+```
+GET /addressbooks/db/contacts-by-date
+```
+
+### 📥 Request Parameters
+
+| Parameter | Description             |
+| --------- | ----------------------- |
+| startDate | Start date of the range |
+| endDate   | End date of the range   |
+
+### 📌 Example Request
+
+```
+GET /addressbooks/db/contacts-by-date?startDate=2026-03-01&endDate=2026-03-10
+```
+
+### 🧪 Testing
+
+* Added a repository test to verify that contacts within the specified date range are successfully retrieved from the database.
+
 
 
 ### 📂 Project Structure
