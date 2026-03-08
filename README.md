@@ -287,9 +287,9 @@ AddressBookApp
 │   │   │   │
 │   │   │   └── AddressBookApplication.java
 │   │   │   ├── util── FileUtil.java
-│   │   └── resources
-│   │       └── application.properties
-│   │
+│   │   |             └── CSVUtil.java
+│   │   |── resources           
+│   │             └── application.properties
 │   └── test
 │       └── java/com/addressbookapp
 │           ├── AddressBookServiceTest.java
