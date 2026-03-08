@@ -8,6 +8,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 @Repository
 public class ContactRepository {
 
@@ -50,5 +52,24 @@ public class ContactRepository {
         }
 
         return contacts;
+    }
+    
+    public int updateContactCity(String firstName, String lastName, String city) {
+
+        String query =
+                "UPDATE contacts SET city=? WHERE first_name=? AND last_name=?";
+
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, city);
+            statement.setString(2, firstName);
+            statement.setString(3, lastName);
+
+            return statement.executeUpdate();
+
+        } catch(Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
