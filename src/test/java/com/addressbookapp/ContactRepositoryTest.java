@@ -10,6 +10,7 @@ import com.addressbookapp.repository.ContactRepository;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 public class ContactRepositoryTest {
@@ -48,21 +49,20 @@ public class ContactRepositoryTest {
     }
     
     @Test
-    public void givenContact_whenInserted_shouldReturnInsertedRows() {
+    public void givenDatabase_whenCountByCityRequested_shouldReturnCounts() {
 
-        Contact contact = new Contact(
-                "Test",
-                "User",
-                "",
-                "Pune",
-                "MH",
-                "411001",
-                "9999999999",
-                "test@gmail.com"
-        );
+        Map<String, Long> result = repository.countContactsByCity();
 
-        int rows = repository.addContact(contact);
+        assertNotNull(result);
+        assertTrue(result.size() > 0);
+    }
+    
+    @Test
+    public void givenDatabase_whenCountByStateRequested_shouldReturnCounts() {
 
-        assertTrue(rows > 0);
+        Map<String, Long> result = repository.countContactsByState();
+
+        assertNotNull(result);
+        assertTrue(result.size() > 0);
     }
 }

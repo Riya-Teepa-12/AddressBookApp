@@ -7,6 +7,8 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 @Repository
 public class ContactRepository {
@@ -109,28 +111,53 @@ public class ContactRepository {
         return contacts;
     }
     
-    public int addContact(Contact contact) {
+    public Map<String, Long> countContactsByCity() {
 
         String query =
-            "INSERT INTO contacts " +
-            "(first_name,last_name,city,state,zip,phone,email,date_added) " +
-            "VALUES (?,?,?,?,?,?,?,CURDATE())";
+                "SELECT city, COUNT(*) as count FROM contacts GROUP BY city";
 
-        try(Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement(query)) {
+        Map<String, Long> result = new HashMap<>();
 
-            statement.setString(1, contact.getFirstName());
-            statement.setString(2, contact.getLastName());
-            statement.setString(3, contact.getCity());
-            statement.setString(4, contact.getState());
-            statement.setString(5, contact.getZip());
-            statement.setString(6, contact.getPhoneNumber());
-            statement.setString(7, contact.getEmail());
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet rs = statement.executeQuery()) {
 
-            return statement.executeUpdate();
+            while (rs.next()) {
+                result.put(
+                        rs.getString("city"),
+                        rs.getLong("count")
+                );
+            }
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        return result;
+    }
+    
+    public Map<String, Long> countContactsByState() {
+
+        String query =
+                "SELECT state, COUNT(*) as count FROM contacts GROUP BY state";
+
+        Map<String, Long> result = new HashMap<>();
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet rs = statement.executeQuery()) {
+
+            while (rs.next()) {
+                result.put(
+                        rs.getString("state"),
+                        rs.getLong("count")
+                );
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return result;
     }
 }
