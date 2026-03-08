@@ -34,4 +34,33 @@ public class AddressBookJsonServerTest {
 
         //System.out.println(response.getBody().asPrettyString());
     }
+    
+    @Test
+    public void givenNewContact_whenAddedToJsonServer_shouldReturnCreated() {
+
+        String newContact = """
+            {
+              "firstName": "Amit",
+              "lastName": "Sharma",
+              "address": "",
+              "city": "Mumbai",
+              "state": "MH",
+              "zip": "400001",
+              "phoneNumber": "7777777777",
+              "email": "amit@gmail.com"
+            }
+            """;
+
+        Response response =
+                RestAssured
+                        .given()
+                        .contentType("application/json")
+                        .body(newContact)
+                        .when()
+                        .post("http://localhost:3000/contacts");
+
+        assertEquals(201, response.getStatusCode());
+
+        //System.out.println(response.getBody().asPrettyString());
+    }
 }
